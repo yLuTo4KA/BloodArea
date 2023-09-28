@@ -52,9 +52,9 @@ class Game {
     setupPerks() {
         for (let player in this.playerObj) {
             this.playerObj[player]['HP'] = 100; // по умолчанию у всех 100 хп
-            this.playerObj[player]['DAMAGE'] = parseInt(Math.random() * (90 - 10) + 10); // Дамаг (мин 10)
-            this.playerObj[player]['DEX'] = parseInt(Math.random() * 60); // Отвечает за уклонение
-            this.playerObj[player]['CRITICAL'] = parseInt(Math.random() * 70); // Шанс крит удара 
+            this.playerObj[player]['DAMAGE'] = parseInt(Math.random() * (100 - 50) + 50); // Дамаг (мин 10)
+            this.playerObj[player]['DEX'] = parseInt(Math.random() * 50); // Отвечает за уклонение
+            this.playerObj[player]['CRITICAL'] = parseInt(Math.random() * 50); // Шанс крит удара 
             this.playerObj[player]['BLADEMAIL'] = (parseInt(Math.random() * 100) <= 100) ? true : false; // За отражаемый урон (имеется ли данный предмет)
         }
         console.log('Да начнутся бои!');
