@@ -35,6 +35,7 @@ a:visited{
 }
 .hidden{
     opacity: 0;
+    display: none;
 }
 .wrapper{
     height: 100vh;
@@ -54,6 +55,16 @@ a:visited{
     justify-content: center;
     align-items: center;
 }
+.restart{
+    padding: 5px 20px;
+    background-color: black;
+    border-radius: 5px;
+    transition: background-color .5s, color .5s;
+}
+.restart:hover{
+    background-color: white;
+    color: black;
+}
 .title{
     font-size: 48px;
     font-weight: 700;
@@ -67,6 +78,15 @@ a:visited{
 }
 .fight{
     margin-bottom: 50px;
+    padding: 20px 30px;
+    background-color: black;
+    color: red !important;
+    border-radius: 10px;
+    transition: background-color .5s;
+}
+.fight:hover{
+    background-color: white;
+    color: black;
 }
 .fighters__list{
     display: flex;
@@ -147,4 +167,13 @@ a:visited{
 }
 .blade-mail--img{
     width: 100px;
+}
+
+.fighter0--comming{
+    transition: margin .5s;
+    margin-left: 550px;
+}
+.fighter1--comming{
+    transition: margin .5s;
+    margin-right: 550px;
 }

@@ -30,8 +30,10 @@ class Game {
         this.setupPerks();
         this.fightButton = document.querySelector('.fight');
         this.attackBtn = document.querySelector('.fighter__attack');
+        this.itter = true;
         this.fightButton.addEventListener('click', (e) => {
             e.preventDefault();
+            this.itter = true;
             this.playerObjKeys = Object.keys(this.playerObj);
             if (this.playerObjKeys.length > 1) {
                 this.playMusic.play();
@@ -45,6 +47,7 @@ class Game {
             }
         });
         this.playMusic = new Audio('./music.mp3');
+        
 
 
 
@@ -52,7 +55,7 @@ class Game {
     setupPerks() {
         for (let player in this.playerObj) {
             this.playerObj[player]['HP'] = 100; // по умолчанию у всех 100 хп
-            this.playerObj[player]['DAMAGE'] = parseInt(Math.random() * (100 - 50) + 50); // Дамаг (мин 10)
+            this.playerObj[player]['DAMAGE'] = parseInt(Math.random() * (40 - 10) + 10); // Дамаг (мин 10)
             this.playerObj[player]['DEX'] = parseInt(Math.random() * 50); // Отвечает за уклонение
             this.playerObj[player]['CRITICAL'] = parseInt(Math.random() * 50); // Шанс крит удара 
             this.playerObj[player]['BLADEMAIL'] = (parseInt(Math.random() * 100) <= 100) ? true : false; // За отражаемый урон (имеется ли данный предмет)
@@ -61,6 +64,8 @@ class Game {
         console.log('Игроки будут сражаться между собой в случайном порядке!');
     }
     play() {
+        
+
         const placeFight = document.querySelector('.fighters__list');
         placeFight.innerHTML = '';
         function createPerson(fighter, index, array, keys) {
@@ -85,23 +90,26 @@ class Game {
             placeFight.appendChild(tempDiv.firstChild);
         }
         const keysPlayer = Object.keys(this.playerObj);
+ 
         while (true) {
             this.fighter1 = parseInt(Math.random() * keysPlayer.length);
             this.fighter2 = parseInt(Math.random() * keysPlayer.length);
             if (this.fighter1 != this.fighter2 && this.fighter2 !== undefined) {
+                this.playerObj[keysPlayer[this.fighter1]].HP = 100;
+                this.playerObj[keysPlayer[this.fighter2]].HP = 100;
                 createPerson(this.fighter1, 0, this.playerObj, keysPlayer);
                 createPerson(this.fighter2, 1, this.playerObj, keysPlayer);
                 break;
             }
         };
+        
         console.log(`на поле боя выходят!: ${keysPlayer[this.fighter1]} и ${keysPlayer[this.fighter2]}`)
         console.log('--------------ХАРАКТЕРИСТИКА---------------')
         console.log(`${keysPlayer[this.fighter1]} имеет ${this.playerObj[keysPlayer[this.fighter1]].HP} HP, ${this.playerObj[keysPlayer[this.fighter1]].DAMAGE} Урона, ${this.playerObj[keysPlayer[this.fighter1]].DEX}% шанса на уклонение, ${this.playerObj[keysPlayer[this.fighter1]].CRITICAL}% шанс крит. удара, и ${this.playerObj[keysPlayer[this.fighter1]].BLADEMAIL ? 'имеет' : 'не имеет'} блейдмейл`);
         console.log('-------------------------------------------')
         console.log(`${keysPlayer[this.fighter2]} имеет ${this.playerObj[keysPlayer[this.fighter2]].HP} HP, ${this.playerObj[keysPlayer[this.fighter2]].DAMAGE} Урона, ${this.playerObj[keysPlayer[this.fighter2]].DEX}% шанса на уклонение, ${this.playerObj[keysPlayer[this.fighter2]].CRITICAL}% шанс крит. удара, и ${this.playerObj[keysPlayer[this.fighter2]].BLADEMAIL ? 'имеет' : 'не имеет'} блейдмейл`);
         console.log('-------------------------------------------')
-
-        function attack(playerAttack, playerObj, enemy) {
+        function attack(playerAttack, playerObj, enemy, itter) {  
             console.log(`${keysPlayer[playerAttack]} Атакует!`);
             document.querySelector(`.fighter__miss${playerAttack}`).classList.add('hidden');
             document.querySelector(`.fighter__miss${enemy}`).classList.add('hidden');
@@ -111,6 +119,8 @@ class Game {
             document.querySelector(`.fighter__person--img--fighter${enemy}`).src = './img/stay.png';
             document.querySelector(`.blade-mail${playerAttack}`).classList.add('hidden');
             document.querySelector(`.blade-mail${enemy}`).classList.add('hidden');
+            // document.querySelector(`.fighter${enemy}`).classList.remove('fighter1--comming')
+            // document.querySelector(`.fighter${enemy}`).classList.remove('fighter0--comming')
             let criticalDamage;
             function rand() {
                 return parseInt(Math.random() * 100);
@@ -119,6 +129,13 @@ class Game {
                 console.log(`Противник ${keysPlayer[enemy]} уклонился!`)
                 document.querySelector(`.fighter__miss${enemy}`).classList.remove('hidden');
                 document.querySelector(`.fighter__person--img--fighter${playerAttack}`).src = './img/attack.png';
+                if(itter){
+                    // document.querySelector(`.fighter${enemy}`).classList.remove('fighter1--comming')
+                    document.querySelector(`.fighter${playerAttack}`).classList.add('fighter0--comming')
+                }else{
+                    // document.querySelector(`.fighter${enemy}`).classList.remove('fighter0--comming')
+                    document.querySelector(`.fighter${playerAttack}`).classList.add('fighter1--comming')
+                }
             } else {
                 console.log('Удар прошел!');
                 if (rand() <= playerObj[keysPlayer[playerAttack]].CRITICAL) { // проверка выпал ли крит
@@ -132,6 +149,11 @@ class Game {
                     document.querySelector(`.blade-mail${enemy}`).classList.remove('hidden');
                     document.querySelector(`.damage${playerAttack}`).textContent = `-(${criticalDamage ? (playerObj[keysPlayer[playerAttack]].DAMAGE * 1.5) * 25 / 100 : playerObj[keysPlayer[playerAttack]].DAMAGE * 25 / 100} HP)`
                 }
+                if(itter){
+                    document.querySelector(`.fighter${playerAttack}`).classList.add('fighter0--comming')
+                }else{
+                    document.querySelector(`.fighter${playerAttack}`).classList.add('fighter1--comming')
+                }
                 console.log(`Противник потерял ${((criticalDamage === true) ? (playerObj[keysPlayer[playerAttack]].DAMAGE * 1.5) : playerObj[keysPlayer[playerAttack]].DAMAGE)} HP`);
                 playerObj[keysPlayer[enemy]].HP -= ((criticalDamage === true) ? (playerObj[keysPlayer[playerAttack]].DAMAGE * 1.5) : playerObj[keysPlayer[playerAttack]].DAMAGE);
                 document.querySelector(`.fighter__hp${enemy}`).textContent = `${playerObj[keysPlayer[enemy]].HP}hp`;
@@ -142,15 +164,15 @@ class Game {
         }
         // Replace your existing while loop with this code
 
-        let itter = true;
+   
 
         this.attackBtn.addEventListener('click', () => {
-            if (itter) {
-                attack(this.fighter1, this.playerObj, this.fighter2);
-                itter = false;
-            } else if (!itter) {
-                attack(this.fighter2, this.playerObj, this.fighter1);
-                itter = true;
+            if (this.itter) {
+                attack(this.fighter1, this.playerObj, this.fighter2, this.itter);
+                this.itter = false;
+            } else if (!this.itter) {
+                attack(this.fighter2, this.playerObj, this.fighter1, this.itter);
+                this.itter = true;
             }
             if (this.playerObj[keysPlayer[this.fighter1]].HP <= 0 || this.playerObj[keysPlayer[this.fighter2]].HP <= 0) {
                 let winner;
