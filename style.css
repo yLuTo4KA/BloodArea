@@ -61,6 +61,12 @@ a:visited{
     background-color: black;
     border-radius: 5px;
     transition: background-color .5s, color .5s;
+    margin-bottom: 10px;
+}
+.countPlayer--start{
+    background: black;
+    padding: 10px;
+    border-radius: 5px;
 }
 .restart:hover{
     background-color: white;
