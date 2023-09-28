@@ -44,7 +44,7 @@ class Game {
                 console.log('Все мертвы:(')
             }
         });
-        this.playMusic = new Audio('../music.mp3');
+        this.playMusic = new Audio('./music.mp3');
 
 
 
@@ -73,11 +73,11 @@ class Game {
                                     </div>
                                 </div>
                                 <div class="fighter__person">
-                                    <img src="../img/stay.png" alt="#" class="fighter__person--img fighter__person--img--fighter${fighter} fighter__person--img${index}">
+                                    <img src="./img/stay.png" alt="#" class="fighter__person--img fighter__person--img--fighter${fighter} fighter__person--img${index}">
                                 </div>
                                 <div class="fighter__miss fighter__miss${fighter} fighter__miss--pos${index} hidden">MISS!</div>
                                 <div class="fighter__critical fighter__critical${fighter} hidden">CRITICAL</div>
-                                <div class="blade-mail hidden blade-mail${fighter}"><img src="../img/blade_mail.png" class="blade-mail--img"></div>
+                                <div class="blade-mail hidden blade-mail${fighter}"><img src="./img/blade_mail.png" class="blade-mail--img"></div>
                                 
                             </li>`;
             const tempDiv = document.createElement('div');
@@ -167,7 +167,7 @@ class Game {
                         </div>
                     </div>
                     <div class="fighter__person winner">
-                        <img src="../img/dead.png" alt="#" class="fighter__person--img">
+                        <img src="./img/dead.png" alt="#" class="fighter__person--img">
                     </div>
                 </li><li class="fighter fighters__item fighter${this.fighter2}">
                 <div class="fighter__info">
@@ -178,7 +178,7 @@ class Game {
                     </div>
                 </div>
                 <div class="fighter__person winner">
-                    <img src="../img/dead.png" alt="#" class="fighter__person--img">
+                    <img src="./img/dead.png" alt="#" class="fighter__person--img">
                 </div>
             </li>`;
                     delete this.playerObj[keysPlayer[this.fighter1]];
@@ -196,7 +196,7 @@ class Game {
                         </div>
                     </div>
                     <div class="fighter__person winner">
-                        <img src="../img/winner.png" alt="#" class="fighter__person--img">
+                        <img src="./img/winner.png" alt="#" class="fighter__person--img">
                     </div>
                 </li><li class="fighter fighters__item fighter${this.fighter1}">
                 <div class="fighter__info">
@@ -207,7 +207,7 @@ class Game {
                     </div>
                 </div>
                 <div class="fighter__person winner">
-                    <img src="../img/dead.png" alt="#" class="fighter__person--img">
+                    <img src="./img/dead.png" alt="#" class="fighter__person--img">
                 </div>
             </li>`;
                     delete this.playerObj[keysPlayer[this.fighter1]];
@@ -224,7 +224,7 @@ class Game {
                         </div>
                     </div>
                     <div class="fighter__person winner">
-                        <img src="../img/dead.png" alt="#" class="fighter__person--img">
+                        <img src="./img/dead.png" alt="#" class="fighter__person--img">
                     </div>
                 </li>
                     <li class="fighter fighters__item fighter${this.fighter1}">
@@ -236,7 +236,7 @@ class Game {
                         </div>
                     </div>
                     <div class="fighter__person winner">
-                        <img src="../img/winner.png" alt="#" class="fighter__person--img">
+                        <img src="./img/winner.png" alt="#" class="fighter__person--img">
                     </div>
                 </li>`;
                     delete this.playerObj[keysPlayer[this.fighter2]];
