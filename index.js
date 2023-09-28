@@ -103,8 +103,6 @@ class Game {
 
         function attack(playerAttack, playerObj, enemy) {
             console.log(`${keysPlayer[playerAttack]} Атакует!`);
-            console.log(enemy);
-            console.log(playerAttack);
             document.querySelector(`.fighter__miss${playerAttack}`).classList.add('hidden');
             document.querySelector(`.fighter__miss${enemy}`).classList.add('hidden');
             document.querySelector(`.fighter__critical${playerAttack}`).classList.add('hidden');
