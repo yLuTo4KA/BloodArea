@@ -44,7 +44,7 @@ class Game {
                 console.log('Все мертвы:(')
             }
         });
-        this.playMusic = new Audio('./music.mp3');
+        this.playMusic = new Audio('../music.mp3');
 
 
 
