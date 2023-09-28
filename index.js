@@ -118,6 +118,7 @@ class Game {
             if (rand() <= playerObj[keysPlayer[playerAttack]].DEX) { // проверка на уклон
                 console.log(`Противник ${keysPlayer[enemy]} уклонился!`)
                 document.querySelector(`.fighter__miss${enemy}`).classList.remove('hidden');
+                document.querySelector(`.fighter__person--img--fighter${playerAttack}`).src = './img/attack.png';
             } else {
                 console.log('Удар прошел!');
                 if (rand() <= playerObj[keysPlayer[playerAttack]].CRITICAL) { // проверка выпал ли крит
