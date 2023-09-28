@@ -7,6 +7,9 @@ h1,h2,h3,h4,h5,h6{
     font-size: inherit;
     font-weight: normal;
 }
+a{
+    color: white;
+}
 .btn{
     text-decoration: none;
     color: black;
@@ -119,13 +122,14 @@ a:visited{
     top: 50%;
     
 }
+.fighter__miss--pos0{
+    left: 150px;
+}
 .fighter__miss--pos1{
-    right: -100px;
+    right: -150px;
     left: 0;
 }
-.fighter__miss0, .fighter__miss1, .fighter__miss2, .fighter__miss3, .fighter__miss4, .fighter__miss5, .fighter__miss6, .fighter__miss7, .fighter__miss8, .fighter__miss9, .fighter__miss10, .fighter__miss11, .fighter__miss12, .fighter__miss13, .fighter__miss14, .fighter__miss15, .fighter__miss16{
-    left: -100px;
-}
+
 .fighter__critical{
     position: absolute;
     top: 50%;

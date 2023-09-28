@@ -34,7 +34,7 @@ class Game {
             e.preventDefault();
             this.playerObjKeys = Object.keys(this.playerObj);
             if (this.playerObjKeys.length > 1) {
-                // this.playMusic.play();
+                this.playMusic.play();
                 this.fightButton.classList.add('hidden')
                 this.attackBtn.classList.remove('hidden')
                 this.play();
@@ -158,9 +158,32 @@ class Game {
                 if (this.playerObj[keysPlayer[this.fighter1]].HP <= 0 && this.playerObj[keysPlayer[this.fighter2]].HP <= 0) {
                     console.warn(`ничья!`);
                     console.log('В случае ничьи оба вылетают!')
+                    winner = `<li class="fighter fighters__item fighter${this.fighter1}">
+                    <div class="fighter__info">
+                        <div class="fighter__name">${keysPlayer[this.fighter1]}</div>
+                        <div class="fighter__healthPoint">
+                            <div class="fighter__hp fighter__hp${this.fighter1}">${this.playerObj[keysPlayer[this.fighter1]].HP}hp</div>
+                            <div class="damage damage${this.fighter1}"></div>
+                        </div>
+                    </div>
+                    <div class="fighter__person winner">
+                        <img src="../img/dead.png" alt="#" class="fighter__person--img">
+                    </div>
+                </li><li class="fighter fighters__item fighter${this.fighter2}">
+                <div class="fighter__info">
+                    <div class="fighter__name">${keysPlayer[this.fighter2]}</div>
+                    <div class="fighter__healthPoint">
+                        <div class="fighter__hp fighter__hp${this.fighter2}">${this.playerObj[keysPlayer[this.fighter2]].HP}hp</div>
+                        <div class="damage damage${this.fighter2}"></div>
+                    </div>
+                </div>
+                <div class="fighter__person winner">
+                    <img src="../img/dead.png" alt="#" class="fighter__person--img">
+                </div>
+            </li>`;
                     delete this.playerObj[keysPlayer[this.fighter1]];
                     delete this.playerObj[keysPlayer[this.fighter2]];
-                    winner = '';
+                    
 
                 } else if (this.playerObj[keysPlayer[this.fighter1]].HP <= 0) {
                     console.warn(`${keysPlayer[this.fighter2]} победил!, у него осталось ${this.playerObj[keysPlayer[this.fighter2]].HP} хп!`);
@@ -175,13 +198,36 @@ class Game {
                     <div class="fighter__person winner">
                         <img src="../img/winner.png" alt="#" class="fighter__person--img">
                     </div>
-                </li>`;
+                </li><li class="fighter fighters__item fighter${this.fighter1}">
+                <div class="fighter__info">
+                    <div class="fighter__name">${keysPlayer[this.fighter1]}</div>
+                    <div class="fighter__healthPoint">
+                        <div class="fighter__hp fighter__hp${this.fighter1}">${this.playerObj[keysPlayer[this.fighter1]].HP}hp</div>
+                        <div class="damage damage${this.fighter1}"></div>
+                    </div>
+                </div>
+                <div class="fighter__person winner">
+                    <img src="../img/dead.png" alt="#" class="fighter__person--img">
+                </div>
+            </li>`;
                     delete this.playerObj[keysPlayer[this.fighter1]];
                     
                 }
                 else {
                     console.warn(`${keysPlayer[this.fighter1]} победил!, у него осталось ${this.playerObj[keysPlayer[this.fighter1]].HP} хп!`);
-                    winner = `<li class="fighter fighters__item fighter${this.fighter1}">
+                    winner = `<li class="fighter fighters__item fighter${this.fighter2}">
+                    <div class="fighter__info">
+                        <div class="fighter__name">${keysPlayer[this.fighter2]}</div>
+                        <div class="fighter__healthPoint">
+                            <div class="fighter__hp fighter__hp${this.fighter2}">${this.playerObj[keysPlayer[this.fighter2]].HP}hp</div>
+                            <div class="damage damage${this.fighter2}"></div>
+                        </div>
+                    </div>
+                    <div class="fighter__person winner">
+                        <img src="../img/dead.png" alt="#" class="fighter__person--img">
+                    </div>
+                </li>
+                    <li class="fighter fighters__item fighter${this.fighter1}">
                     <div class="fighter__info">
                         <div class="fighter__name">${keysPlayer[this.fighter1]}</div>
                         <div class="fighter__healthPoint">
@@ -193,7 +239,7 @@ class Game {
                         <img src="../img/winner.png" alt="#" class="fighter__person--img">
                     </div>
                 </li>`;
-                    delete this.playerObj[keysPlayer[this.fighter1]];
+                    delete this.playerObj[keysPlayer[this.fighter2]];
                     
                 }
                 console.log(this.playerObj)
@@ -211,4 +257,8 @@ class Game {
 
 
 
-const game = new Game();
+
+document.querySelector('.restart').addEventListener('click', ()=>{
+    document.querySelector('.fight').classList.remove('hidden');
+    const game = new Game();
+})
