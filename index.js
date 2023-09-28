@@ -109,8 +109,8 @@ class Game {
             document.querySelector(`.fighter__miss${enemy}`).classList.add('hidden');
             document.querySelector(`.fighter__critical${playerAttack}`).classList.add('hidden');
             document.querySelector(`.fighter__critical${enemy}`).classList.add('hidden');
-            document.querySelector(`.fighter__person--img--fighter${playerAttack}`).src = '../img/stay.png';
-            document.querySelector(`.fighter__person--img--fighter${enemy}`).src = '../img/stay.png';
+            document.querySelector(`.fighter__person--img--fighter${playerAttack}`).src = './img/stay.png';
+            document.querySelector(`.fighter__person--img--fighter${enemy}`).src = './img/stay.png';
             document.querySelector(`.blade-mail${playerAttack}`).classList.add('hidden');
             document.querySelector(`.blade-mail${enemy}`).classList.add('hidden');
             let criticalDamage;
