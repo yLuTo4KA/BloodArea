@@ -38,7 +38,8 @@ a:visited{
 }
 .wrapper{
     height: 100vh;
-    background: url('./img/mkb-bg.jpg');
+    background: url('./img/mkb-bg.jpg') center center no-repeat cover;
+    overflow: hidden;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
