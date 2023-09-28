@@ -136,7 +136,7 @@ class Game {
                 console.log(`Противник потерял ${((criticalDamage === true) ? (playerObj[keysPlayer[playerAttack]].DAMAGE * 1.5) : playerObj[keysPlayer[playerAttack]].DAMAGE)} HP`);
                 playerObj[keysPlayer[enemy]].HP -= ((criticalDamage === true) ? (playerObj[keysPlayer[playerAttack]].DAMAGE * 1.5) : playerObj[keysPlayer[playerAttack]].DAMAGE);
                 document.querySelector(`.fighter__hp${enemy}`).textContent = `${playerObj[keysPlayer[enemy]].HP}hp`;
-                document.querySelector(`.fighter__person--img--fighter${playerAttack}`).src = '../img/attack.png';
+                document.querySelector(`.fighter__person--img--fighter${playerAttack}`).src = './img/attack.png';
                 document.querySelector(`.damage${enemy}`).textContent = `-(${((criticalDamage === true) ? (playerObj[keysPlayer[playerAttack]].DAMAGE * 1.5) : playerObj[keysPlayer[playerAttack]].DAMAGE)} HP)`
             }
             console.log('-------------------------------------------')
