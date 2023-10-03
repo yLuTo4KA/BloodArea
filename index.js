@@ -63,11 +63,42 @@ class Game {
     }
     setupPerks() {
         for (let player in this.playerObj) {
-            this.playerObj[player]['HP'] = 100; // по умолчанию у всех 100 хп
-            this.playerObj[player]['DAMAGE'] = parseInt(Math.random() * (40 - 10) + 10); // Дамаг (мин 10)
-            this.playerObj[player]['DEX'] = parseInt(Math.random() * 50); // Отвечает за уклонение
-            this.playerObj[player]['CRITICAL'] = parseInt(Math.random() * 50); // Шанс крит удара 
-            this.playerObj[player]['BLADEMAIL'] = (parseInt(Math.random() * 100) <= 100) ? true : false; // За отражаемый урон (имеется ли данный предмет)
+            let hp = prompt(`Введите кол-во хп ${player} (минимум 100) (максимум 200)`)
+            while(hp < 100 || hp > 200){
+                console.log('Вы ввели не верное значение hp!');
+                hp = prompt(`Введите кол-во хп ${player} (минимум 100) (максимум 200)`)
+            }
+            let dmg = prompt(`Введите наносимый урон ${player} (мин 10) (макс 40)`)
+            while(dmg < 10 || dmg > 40){
+                console.log(`Вы ввели не верное значение damage!`);
+                dmg = prompt(`Введите наносимый урон ${player} (мин 10) (макс 40)`)
+            }
+            let dex = prompt(`Введите кол-во ловкости ${player} (1-ловкость 1%)(мин 0) (макс 50)`)
+            while(dex > 50){
+                console.log(`Вы ввели не верное значение ловкости!`);
+                dex = prompt(`Введите кол-во ловкости ${player} (1-ловкость 1%)(мин 0) (макс 50)`)
+            }
+            let crit = prompt(`Введите шанс крит удара ${player} (мин 0) (макс 50)`)
+            while(crit > 50){
+                console.log(`Вы ввели не верное значение крит удара!`);
+                crit = prompt(`Введите шанс крит удара ${player} (мин 0) (макс 50)`)
+            }
+            let bladeMail = prompt(`Введите имеется ли у игрока ${player} блейдмейл (Да) (Нет)`).toLowerCase();
+            if(bladeMail === 'да'){
+                bladeMail = true;
+            }else{
+                bladeMail = false;
+            }
+            // this.playerObj[player]['HP'] = 100; // по умолчанию у всех 100 хп
+            // this.playerObj[player]['DAMAGE'] = parseInt(Math.random() * (40 - 10) + 10); // Дамаг (мин 10) (макс 40)
+            // this.playerObj[player]['DEX'] = parseInt(Math.random() * 50); // Отвечает за уклонение
+            // this.playerObj[player]['CRITICAL'] = parseInt(Math.random() * 50); // Шанс крит удара 
+            // this.playerObj[player]['BLADEMAIL'] = (parseInt(Math.random() * 100) <= 35) ? true : false; // За отражаемый урон (имеется ли данный предмет)
+            this.playerObj[player]['HP'] = hp; // по умолчанию у всех 100 хп
+            this.playerObj[player]['DAMAGE'] = dmg; // Дамаг (мин 10) (макс 40)
+            this.playerObj[player]['DEX'] = dex; // Отвечает за уклонение
+            this.playerObj[player]['CRITICAL'] = crit; // Шанс крит удара 
+            this.playerObj[player]['BLADEMAIL'] = bladeMail; // За отражаемый урон (имеется ли данный предмет)
         }
         console.log('Да начнутся бои!');
         console.log('Игроки будут сражаться между собой в случайном порядке!');
