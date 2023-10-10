@@ -63,8 +63,8 @@ class Game {
     }
     setupPerks() {
         for (let player in this.playerObj) {
-            let hp = prompt(`Введите кол-во хп ${player} (минимум 100) (максимум 200)`)
-            while(hp < 100 || hp > 200){
+            let hp = prompt(`Введите кол-во хп ${player} (максимум 100)`)
+            while(hp <= 100){
                 console.log('Вы ввели не верное значение hp!');
                 hp = prompt(`Введите кол-во хп ${player} (минимум 100) (максимум 200)`)
             }
